@@ -1,0 +1,50 @@
+﻿@page "/"
+
+<vscode-panels activeid="@ActiveTabId">
+    <vscode-panel-tab id="tab-1">Tab 1</vscode-panel-tab>
+    <vscode-panel-tab id="tab-2">Tab 2</vscode-panel-tab>
+    <vscode-panel-tab id="tab-3">Tab 3</vscode-panel-tab>
+    <vscode-panel-view id="view-1" style="height: 570px">
+        <h1>
+            Tab 1
+        </h1>
+    </vscode-panel-view>
+    <vscode-panel-view id="view-2">
+        <h1>
+            Tab 2
+        </h1>
+    </vscode-panel-view>
+    <vscode-panel-view id="view-3">
+        <h1>
+            Tab 3
+        </h1>
+    </vscode-panel-view>
+</vscode-panels>
+
+@code
+{
+    private string _activeTabId;
+    private string ActiveTabId
+    {
+        get => _activeTabId;
+
+        set
+        {
+            if (_activeTabId != value)
+            {
+                _activeTabId = value;
+            }
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            ActiveTabId = "tab-2";
+            StateHasChanged();
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+}
